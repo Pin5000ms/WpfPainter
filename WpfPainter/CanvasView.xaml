@@ -29,35 +29,35 @@
             </ContentControl>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid>
-        <Canvas x:Name="drawCanvas" Grid.Row="1" 
-                MouseLeftButtonDown="drawCanvas_MouseLeftButtonDown" 
-                MouseMove ="drawCanvas_MouseMove" 
-                MouseLeftButtonUp ="drawCanvas_MouseLeftButtonUp"
-                Background="White">
-            <ItemsControl ItemsSource="{Binding Objects}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentControl Content="{Binding}">
-                            <ContentControl.ContentTemplateSelector>
-                                <local:ShapeTemplateSelector>
-                                    <local:ShapeTemplateSelector.RectangleTemplate>
-                                        <DataTemplate>
-                                            <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource RectangleDataTemplate}" />
-                                        </DataTemplate>
-                                    </local:ShapeTemplateSelector.RectangleTemplate>
-                                    <local:ShapeTemplateSelector.EllipseTemplate>
-                                        <DataTemplate>
-                                            <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource EllipseDataTemplate}" />
-                                        </DataTemplate>
-                                    </local:ShapeTemplateSelector.EllipseTemplate>
-                                </local:ShapeTemplateSelector>
-                            </ContentControl.ContentTemplateSelector>
-                        </ContentControl>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+    
+    <Canvas x:Name="drawCanvas" Grid.Row="1" 
+            MouseLeftButtonDown="drawCanvas_MouseLeftButtonDown" 
+            MouseMove ="drawCanvas_MouseMove" 
+            MouseLeftButtonUp ="drawCanvas_MouseLeftButtonUp"
+            Background="White">
+        <ItemsControl ItemsSource="{Binding Objects}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}">
+                        <ContentControl.ContentTemplateSelector>
+                            <local:ShapeTemplateSelector>
+                                <local:ShapeTemplateSelector.RectangleTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource RectangleDataTemplate}" />
+                                    </DataTemplate>
+                                </local:ShapeTemplateSelector.RectangleTemplate>
+                                <local:ShapeTemplateSelector.EllipseTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource EllipseDataTemplate}" />
+                                    </DataTemplate>
+                                </local:ShapeTemplateSelector.EllipseTemplate>
+                            </local:ShapeTemplateSelector>
+                        </ContentControl.ContentTemplateSelector>
+                    </ContentControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
-        </Canvas>
-    </Grid>
+    </Canvas>
+    
 </UserControl>
