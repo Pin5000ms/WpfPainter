@@ -19,7 +19,7 @@
             </ContentControl>
         </DataTemplate>
 
-        <DataTemplate x:Key="EllipseDataTemplate" DataType="{x:Type model:EllipseModel}">
+        <DataTemplate x:Key="EllipseDataTemplate" >
             <ContentControl>
                 <ContentControl.Content>
                     <Canvas>
@@ -30,7 +30,7 @@
         </DataTemplate>
     </UserControl.Resources>
     
-    <Canvas x:Name="drawCanvas" Grid.Row="1" 
+    <Canvas x:Name="drawCanvas"  
             MouseLeftButtonDown="drawCanvas_MouseLeftButtonDown" 
             MouseMove ="drawCanvas_MouseMove" 
             MouseLeftButtonUp ="drawCanvas_MouseLeftButtonUp"
