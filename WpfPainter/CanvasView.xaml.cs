@@ -27,7 +27,7 @@ namespace WpfPainter
         public CanvasView()
         {
             InitializeComponent();
-            drawCanvas.DataContext = canvasVM;
+            this.DataContext = canvasVM;
         }
         private ModelBase currentShape = new RectangleModel();
         private void drawCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
