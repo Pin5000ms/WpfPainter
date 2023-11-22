@@ -28,8 +28,9 @@ namespace WpfPainter
         {
             InitializeComponent();
             this.DataContext = canvasVM;
+            canvasVM.Objects.Add(new PolylineModel() { Stroke = Brushes.Red, StrokeThickness = 2, PolylinePoints = new PointCollection() { new Point(100, 100) } });
         }
-        private ModelBase currentShape = new RectangleModel();
+        private ModelBase currentShape = new PolylineModel();
         private void drawCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

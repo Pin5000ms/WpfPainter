@@ -62,6 +62,7 @@
       <DependentUpon>CanvasView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\EllipseModel.cs" />
+    <Compile Include="Model\PolylineModel.cs" />
     <Compile Include="ShapeTemplateSelector.cs" />
     <Page Include="CanvasView.xaml">
       <SubType>Designer</SubType>

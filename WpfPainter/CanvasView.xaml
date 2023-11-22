@@ -28,6 +28,16 @@
                 </ContentControl.Content>
             </ContentControl>
         </DataTemplate>
+
+        <DataTemplate x:Key="PolylineDataTemplate">
+            <ContentControl>
+                <ContentControl.Content>
+                    <Canvas>
+                        <Polyline Points="{Binding PolylinePoints}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}"/>
+                    </Canvas>
+                </ContentControl.Content>
+            </ContentControl>
+        </DataTemplate>
     </UserControl.Resources>
     
     <Canvas x:Name="drawCanvas"  
@@ -51,13 +61,28 @@
                                         <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource EllipseDataTemplate}" />
                                     </DataTemplate>
                                 </local:ShapeTemplateSelector.EllipseTemplate>
+                                <local:ShapeTemplateSelector.PolylineTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource PolylineDataTemplate}" />
+                                    </DataTemplate>
+                                </local:ShapeTemplateSelector.PolylineTemplate>
+
                             </local:ShapeTemplateSelector>
                         </ContentControl.ContentTemplateSelector>
                     </ContentControl>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
+        <!--<Polyline Stroke="Red" StrokeThickness="2">
+            <Polyline.Points>
+                <PointCollection>
+                    <Point X="100" Y="100"/>
+                    <Point X="150" Y="150"/>
+                    <Point X="200" Y="100"/>
+                    --><!-- Add more points if needed --><!--
+                </PointCollection>
+            </Polyline.Points>
+        </Polyline>-->
     </Canvas>
     
 </UserControl>
