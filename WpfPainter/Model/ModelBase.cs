@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,6 +95,23 @@ namespace WpfPainter.Model
                 strokeThickness = value;
                 OnPropertyChanged();
             }
+        }
+
+
+        public virtual void MoveBy(double deltaX, double deltaY)
+        {
+            X += deltaX;
+            Y += deltaY;
+        }
+
+        public virtual bool IsPointInside(Point point)
+        {
+            bool result = false;
+            if(point.X >= X && point.X <= X + Width && point.Y >= Y && point.Y <= Y + Height)
+            {
+                result = true;
+            }
+            return result;
         }
 
 
