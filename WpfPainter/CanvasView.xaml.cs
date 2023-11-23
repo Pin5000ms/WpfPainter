@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,38 +24,38 @@ namespace WpfPainter
     public partial class CanvasView : UserControl
     {
         CanvasViewModel canvasVM = new CanvasViewModel();
+        StateBase State;
         public CanvasView()
         {
             InitializeComponent();
             this.DataContext = canvasVM;
+            State = new SelectedState(canvasVM);
             canvasVM.Objects.Add(new PolylineModel() { Stroke = Brushes.Red, StrokeThickness = 2, PolylinePoints = new PointCollection() { new Point(100, 100) } });
         }
-        private ModelBase currentShape = new PolylineModel();
+
+        
+
         private void drawCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Point startPoint = e.GetPosition(drawCanvas);
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Point startPoint = e.GetPosition(drawCanvas);
-                canvasVM.Objects.Add(currentShape.Create(startPoint));
+                State.MouseDown(startPoint);
             }
         }
 
         private void drawCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (currentShape != null)
+            Point mousePosition = e.GetPosition(drawCanvas);
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                if (e.LeftButton == MouseButtonState.Pressed)
-                {
-                    Point mousePosition = e.GetPosition(drawCanvas);
-                    currentShape.AdjustSize(mousePosition);    
-                }
+                State.MouseMove(mousePosition);
             }
         }
 
         private void drawCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            currentShape.EndCreate();
-            //currentShape = null;
+            State.MouseUp();
         }
     }
 }
