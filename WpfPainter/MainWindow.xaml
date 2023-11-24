@@ -12,8 +12,14 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="Black">
-            <Button Content="Test" Command="{Binding BtnClick}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Select" Command="{Binding SelectCommand}"/>
+                <Button Content="Rectangle" Command="{Binding RectangleCommand}"/>
+                <Button Content="Ellipse" Command="{Binding EllipseCommand}"/>
+                <Button Content="Brush" Command="{Binding BrushCommand}"/>
+                
+            </StackPanel>
         </Grid>
-        <local:CanvasView Grid.Row="1"/>
+        <local:CanvasView x:Name="CanvasView" Grid.Row="1"/>
     </Grid>
 </Window>

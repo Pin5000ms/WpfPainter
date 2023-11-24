@@ -20,12 +20,12 @@ namespace WpfPainter
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
+            this.DataContext = new MainWindowViewModel(CanvasView);
         }
+
 
     }
 }

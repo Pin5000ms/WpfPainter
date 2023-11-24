@@ -15,16 +15,10 @@ namespace WpfPainter
 {
     public  class CanvasViewModel: ObservableObject
     {
-
         public CanvasViewModel()
         {
-            // 初始化 Objects，可以從資料庫、檔案或其他來源載入資料
-            Objects = new ObservableCollection<ModelBase>
-            {
-                new RectangleModel { X = 70, Y = 100, Width = 40, Height = 50, FillColor = Brushes.Blue },
-                new EllipseModel { X = 100, Y = 200, Width = 20, Height = 20, FillColor = Brushes.Red }
-                // Add more objects as needed
-            };
+            // 初始化 Objects
+            Objects = new ObservableCollection<ModelBase>();
         }
 
         private ObservableCollection<ModelBase> objects;

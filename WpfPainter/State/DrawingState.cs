@@ -12,15 +12,17 @@ namespace WpfPainter
 {
     public class DrawingState : StateBase
     {
-        private ModelBase currentShape = new PolylineModel();
-
         public DrawingState(CanvasViewModel canvasVM) : base(canvasVM)
         {
         }
 
         public override void MouseDown(Point startPoint)
         {
-            _canvasVM.Objects.Add(currentShape.Create(startPoint));
+            var newInstance = currentShape.Create(startPoint);
+            newInstance.FillColor = fillColor;
+            newInstance.Stroke = stroke;
+            newInstance.StrokeThickness = thickness;
+            _canvasVM.Objects.Add(newInstance);
         }
         public override void MouseMove(Point mousePosition)
         {
@@ -32,7 +34,6 @@ namespace WpfPainter
         public override void MouseUp()
         {
             currentShape.EndCreate();
-            //currentShape = null;
         }
     }
 }

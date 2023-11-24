@@ -10,8 +10,6 @@ namespace WpfPainter
 {
     public class SelectedState: StateBase
     {
-        private ModelBase currentShape;
-
         public SelectedState(CanvasViewModel canvasVM) : base(canvasVM)
         {
         }

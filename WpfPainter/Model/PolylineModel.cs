@@ -50,5 +50,29 @@ namespace WpfPainter.Model
         {
             currentModel = null;
         }
+
+        public override bool IsPointInside(Point point)
+        {
+            bool result = false;
+            for (int i = 0; i < PolylinePoints.Count; i++)
+            {
+                double dist = (point.X - PolylinePoints[i].X) * (point.X - PolylinePoints[i].X) + (point.Y - PolylinePoints[i].Y) * (point.Y - PolylinePoints[i].Y);
+                if (dist < 25)
+                {
+                    return true;
+                }
+            }
+            return result;
+        }
+
+        public override void MoveBy(double deltaX, double deltaY)
+        {
+            List<Point> newPoints = new List<Point>();
+            foreach (var p in PolylinePoints)
+            {
+                newPoints.Add(new Point(p.X + deltaX, p.Y + deltaY));
+            }
+            PolylinePoints = new PointCollection(newPoints);
+        }
     }
 }

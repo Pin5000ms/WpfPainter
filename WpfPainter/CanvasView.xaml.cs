@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,17 +24,18 @@ namespace WpfPainter
     /// 
     public partial class CanvasView : UserControl
     {
-        CanvasViewModel canvasVM = new CanvasViewModel();
         StateBase State;
+        CanvasViewModel canvasVM = new CanvasViewModel();
+
+        public Dictionary<string ,StateBase> States = new Dictionary<string, StateBase>();
         public CanvasView()
         {
             InitializeComponent();
             this.DataContext = canvasVM;
-            State = new SelectedState(canvasVM);
-            canvasVM.Objects.Add(new PolylineModel() { Stroke = Brushes.Red, StrokeThickness = 2, PolylinePoints = new PointCollection() { new Point(100, 100) } });
+            States.Add("Select", new SelectedState(canvasVM));
+            States.Add("Draw", new DrawingState(canvasVM));
+            State = States["Select"];
         }
-
-        
 
         private void drawCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -56,6 +58,37 @@ namespace WpfPainter
         private void drawCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             State.MouseUp();
+        }
+
+
+        public void SetPen(Brush fillColor, SolidColorBrush stroke, double thickness)
+        {
+            State.fillColor = fillColor;
+            State.stroke = stroke;
+            State.thickness = thickness;
+        }
+
+        public void RectangleMode()
+        {
+            State = States["Draw"];
+            State.currentShape = new RectangleModel();
+        }
+
+        public void EllipseMode()
+        {
+            State = States["Draw"];
+            State.currentShape = new EllipseModel();
+        }
+
+        public void PolylineMode()
+        {
+            State = States["Draw"];
+            State.currentShape = new PolylineModel();
+        }
+
+        public void SelectMode()
+        {
+            State = States["Select"];
         }
     }
 }

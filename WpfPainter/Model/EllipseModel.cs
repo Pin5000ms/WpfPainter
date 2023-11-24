@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Shapes;
 
 namespace WpfPainter.Model
 {
@@ -47,7 +48,7 @@ namespace WpfPainter.Model
                 Y = startPoint.Y,
                 Stroke = Brushes.Black,
                 StrokeThickness = 2,
-                FillColor = Brushes.Transparent // You can set the initial fill color
+                FillColor = Brushes.Red
             };
             return currentEllipse;
         }
@@ -75,6 +76,17 @@ namespace WpfPainter.Model
         public override void EndCreate()
         {
             currentEllipse = null;
+        }
+
+        public override bool IsPointInside(Point point)
+        {
+            // 橢圓的中心座標
+            Point ellipseCenter = new Point(X + Width / 2,Y + Height / 2);
+
+            // 檢查點到橢圓中心的距離是否小於等於橢圓的半長軸和半短軸的平均值
+            double distance = Math.Sqrt(Math.Pow((point.X - ellipseCenter.X) / (Width / 2), 2) + Math.Pow((point.Y - ellipseCenter.Y) / (Height / 2), 2));
+
+            return distance <= 1.0;
         }
     }
 }
