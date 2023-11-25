@@ -16,7 +16,9 @@ namespace WpfPainter
         public DataTemplate EllipseTemplate { get; set; }
         public DataTemplate PolylineTemplate { get; set; }
 
-        
+        public DataTemplate LineTemplate { get; set; }
+
+
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
@@ -35,6 +37,10 @@ namespace WpfPainter
             else if(item is PolylineModel) 
             {
                 return PolylineTemplate;
+            }
+            else if (item is LineModel)
+            {
+                return LineTemplate;
             }
 
             // Return a default template if needed

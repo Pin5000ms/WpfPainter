@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using WpfPainter.Model;
+using System.Windows.Input;
 
 namespace WpfPainter
 {
@@ -113,6 +114,14 @@ namespace WpfPainter
             States["Select"].SetProperty(fillColor, stroke, thickness);
         }
 
+        public void LineMode()
+        {
+            State = States["Draw"];
+            Cursor = Cursors.Cross;
+            State.currentShape = new LineModel();
+            ResetSelect();
+        }
+
         public void RectangleMode()
         {
             State = States["Draw"];
@@ -156,6 +165,8 @@ namespace WpfPainter
         public void EraseMode()
         {
             State = States["Erase"];
+            Cursor customCursor = new Cursor(Application.GetResourceStream(new Uri("Resource/eraser.cur", UriKind.Relative)).Stream); 
+            Cursor = customCursor;
             ResetSelect();
         }
 
@@ -166,6 +177,8 @@ namespace WpfPainter
             List<TriangleModel> Triangle = new List<TriangleModel>();
             List<EllipseModel> Ellipse = new List<EllipseModel>();
             List<PolylineModel> Polyline = new List<PolylineModel>();
+            List<LineModel> Line = new List<LineModel>();
+
             foreach (var item in canvasVM.Objects) 
             { 
                 if(item is RectangleModel)
@@ -184,11 +197,18 @@ namespace WpfPainter
                 {
                     Polyline.Add(item as PolylineModel);
                 }
+                else if ((item is LineModel))
+                {
+                    Line.Add(item as LineModel);
+                }
             }
-
 
             string jsonString = JsonConvert.SerializeObject(Rectangle);
             string filePath = "Rectangle.json";
+            File.WriteAllText(filePath, jsonString);
+
+            jsonString = JsonConvert.SerializeObject(Line);
+            filePath = "Line.json";
             File.WriteAllText(filePath, jsonString);
 
             jsonString = JsonConvert.SerializeObject(Triangle);
@@ -213,7 +233,7 @@ namespace WpfPainter
             {
                 canvasVM.Objects.Add(item);
             }
-
+         
             filePath = "Triangle.json";
             jsonString = File.ReadAllText(filePath);
             var Objects2 = JsonConvert.DeserializeObject<List<TriangleModel>>(jsonString);
@@ -235,6 +255,14 @@ namespace WpfPainter
             jsonString = File.ReadAllText(filePath);
             var Objects4 = JsonConvert.DeserializeObject<List<PolylineModel>>(jsonString);
             foreach (var item in Objects4)
+            {
+                canvasVM.Objects.Add(item);
+            }
+
+            filePath = "Line.json";
+            jsonString = File.ReadAllText(filePath);
+            var Objects5 = JsonConvert.DeserializeObject<List<LineModel>>(jsonString);
+            foreach (var item in Objects5)
             {
                 canvasVM.Objects.Add(item);
             }

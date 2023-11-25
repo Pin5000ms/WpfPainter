@@ -21,6 +21,7 @@ namespace WpfPainter
             SelectCommand = new RelayCommand(o => SelectMode());
             RectangleCommand = new RelayCommand(o=> RectangleMode());
             TriangleCommand = new RelayCommand(o => TriangleMode());
+            LineCommand = new RelayCommand(o => LineMode());
             EllipseCommand = new RelayCommand(o => EllipseMode());
             BrushCommand = new RelayCommand(o => BrushMode());
             EraseCommand = new RelayCommand(o => EraseMode());
@@ -33,10 +34,10 @@ namespace WpfPainter
         public RelayCommand SelectCommand { get; set; }
         public RelayCommand RectangleCommand { get; set; }
         public RelayCommand TriangleCommand { get; set; }
+        public RelayCommand LineCommand { get; set; }
         public RelayCommand EllipseCommand { get; set; }
         public RelayCommand BrushCommand { get; set; }
         public RelayCommand EraseCommand { get; set; }
-
         public RelayCommand SaveCommand { get; set; }
 
 
@@ -211,6 +212,11 @@ namespace WpfPainter
         private void TriangleMode()
         {
             _canvasView.TriangleMode();
+        }
+
+        private void LineMode()
+        {
+            _canvasView.LineMode();
         }
 
         private void EllipseMode()

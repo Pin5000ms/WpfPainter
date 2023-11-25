@@ -65,6 +65,7 @@
       <DependentUpon>CanvasView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\EllipseModel.cs" />
+    <Compile Include="Model\LineModel.cs" />
     <Compile Include="Model\PolylineModel.cs" />
     <Compile Include="Model\TriangleModel.cs" />
     <Compile Include="Canvas\ShapeTemplateSelector.cs" />
@@ -132,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\eraser.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
