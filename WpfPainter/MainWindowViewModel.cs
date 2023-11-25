@@ -206,6 +206,9 @@ namespace WpfPainter
                 case "Brush":
                     _canvasView.PolylineMode();
                     break;
+                case "Erase":
+                    _canvasView.EraseMode();
+                    break;
                 case "Save":
                     _canvasView.Save();
                     break;
