@@ -19,6 +19,17 @@
             </ContentControl>
         </DataTemplate>
 
+        <DataTemplate x:Key="TriangleDataTemplate" >
+            <ContentControl>
+                <ContentControl.Content>
+                    <Canvas>
+                        <!--用Rectangle會無法實現從右下往左上畫的操作-->
+                        <Polygon Points="{Binding PolygonPoints}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" Fill="{Binding FillColor}" />
+                    </Canvas>
+                </ContentControl.Content>
+            </ContentControl>
+        </DataTemplate>
+
         <DataTemplate x:Key="EllipseDataTemplate" >
             <ContentControl>
                 <ContentControl.Content>
@@ -56,6 +67,11 @@
                                         <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource RectangleDataTemplate}" />
                                     </DataTemplate>
                                 </local:ShapeTemplateSelector.RectangleTemplate>
+                                <local:ShapeTemplateSelector.TriangleTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource TriangleDataTemplate}" />
+                                    </DataTemplate>
+                                </local:ShapeTemplateSelector.TriangleTemplate>
                                 <local:ShapeTemplateSelector.EllipseTemplate>
                                     <DataTemplate>
                                         <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource EllipseDataTemplate}" />

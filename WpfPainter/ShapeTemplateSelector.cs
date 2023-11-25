@@ -12,14 +12,21 @@ namespace WpfPainter
     public class ShapeTemplateSelector : DataTemplateSelector
     {
         public DataTemplate RectangleTemplate { get; set; }
+        public DataTemplate TriangleTemplate { get; set; }
         public DataTemplate EllipseTemplate { get; set; }
         public DataTemplate PolylineTemplate { get; set; }
+
+        
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item is RectangleModel)
             {
                 return RectangleTemplate;
+            }
+            else if (item is TriangleModel)
+            {
+                return TriangleTemplate;
             }
             else if (item is EllipseModel)
             {

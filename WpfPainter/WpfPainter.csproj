@@ -63,8 +63,10 @@
     </Compile>
     <Compile Include="Model\EllipseModel.cs" />
     <Compile Include="Model\PolylineModel.cs" />
+    <Compile Include="Model\TriangleModel.cs" />
     <Compile Include="ShapeTemplateSelector.cs" />
     <Compile Include="State\DrawingState.cs" />
+    <Compile Include="State\EraseState.cs" />
     <Compile Include="State\SelectedState.cs" />
     <Compile Include="State\StateBase.cs" />
     <Page Include="CanvasView.xaml">

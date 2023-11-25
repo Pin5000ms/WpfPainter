@@ -15,9 +15,10 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="Select" Command="{Binding SelectCommand}"/>
                 <Button Content="Rectangle" Command="{Binding RectangleCommand}"/>
+                <Button Content="Triangle" Command="{Binding TriangleCommand}"/>
                 <Button Content="Ellipse" Command="{Binding EllipseCommand}"/>
                 <Button Content="Brush" Command="{Binding BrushCommand}"/>
-                
+                <Button Content="Erase" Command="{Binding EraseCommand}"/>
             </StackPanel>
         </Grid>
         <local:CanvasView x:Name="CanvasView" Grid.Row="1"/>

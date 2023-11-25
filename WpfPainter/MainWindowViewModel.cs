@@ -20,14 +20,20 @@ namespace WpfPainter
             _canvasView = canvasView;
             SelectCommand = new RelayCommand(o => SelectMode());
             RectangleCommand = new RelayCommand(o=> RectangleMode());
+            TriangleCommand = new RelayCommand(o => TriangleMode());
             EllipseCommand = new RelayCommand(o => EllipseMode());
             BrushCommand = new RelayCommand(o => BrushMode());
+            EraseCommand = new RelayCommand(o => EraseMode());
         }
 
         public RelayCommand SelectCommand { get; set; }
         public RelayCommand RectangleCommand { get; set; }
+
+        public RelayCommand TriangleCommand { get; set; }
         public RelayCommand EllipseCommand { get; set; }
         public RelayCommand BrushCommand { get; set; }
+
+        public RelayCommand EraseCommand { get; set; }
 
 
         private void SelectMode()
@@ -41,6 +47,12 @@ namespace WpfPainter
             _canvasView.SetPen(Brushes.Red, Brushes.Black, 2);
         }
 
+        private void TriangleMode()
+        {
+            _canvasView.TriangleMode();
+            _canvasView.SetPen(Brushes.Red, Brushes.Black, 2);
+        }
+
         private void EllipseMode()
         {
             _canvasView.EllipseMode();
@@ -51,6 +63,11 @@ namespace WpfPainter
         {
             _canvasView.PolylineMode();
             _canvasView.SetPen(Brushes.Transparent, Brushes.Black, 2);
+        }
+
+        private void EraseMode()
+        {
+            _canvasView.EraseMode();
         }
     }
 }

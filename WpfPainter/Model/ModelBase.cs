@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using WpfPainter.MVVM;
 
 namespace WpfPainter.Model
@@ -96,6 +97,7 @@ namespace WpfPainter.Model
                 OnPropertyChanged();
             }
         }
+
 
 
         public virtual void MoveBy(double deltaX, double deltaY)
