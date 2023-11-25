@@ -35,6 +35,10 @@ namespace WpfPainter
         }
         public override void MouseUp()
         {
+            foreach (var item in _canvasVM.Objects)
+            {
+                item.IsSelected = false;
+            }
             //畫完時要自動選取當前形狀
             newInstance.IsSelected = true;
             currentShape.EndCreate();
@@ -46,6 +50,8 @@ namespace WpfPainter
             fillColor = _fillColor;
             stroke = _stroke;
             thickness = _thickness;
+
+            //當前畫完的項目改變顏色
             if (newInstance != null)
             {
                 newInstance.Stroke = stroke;

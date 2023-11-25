@@ -61,18 +61,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CanvasView.xaml.cs">
+    <Compile Include="Canvas\CanvasView.xaml.cs">
       <DependentUpon>CanvasView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\EllipseModel.cs" />
     <Compile Include="Model\PolylineModel.cs" />
     <Compile Include="Model\TriangleModel.cs" />
-    <Compile Include="ShapeTemplateSelector.cs" />
+    <Compile Include="Canvas\ShapeTemplateSelector.cs" />
     <Compile Include="State\DrawingState.cs" />
     <Compile Include="State\EraseState.cs" />
     <Compile Include="State\SelectedState.cs" />
     <Compile Include="State\StateBase.cs" />
-    <Page Include="CanvasView.xaml">
+    <Page Include="Canvas\CanvasView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -84,7 +84,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CanvasViewModel.cs" />
+    <Compile Include="Canvas\CanvasViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -121,6 +121,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\brush.png" />
+    <Resource Include="Resource\cursor.png" />
+    <Resource Include="Resource\ellipse.png" />
+    <Resource Include="Resource\eraser.png" />
+    <Resource Include="Resource\rectangle.png" />
+    <Resource Include="Resource\triangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

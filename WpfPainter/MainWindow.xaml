@@ -5,10 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPainter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="WPF Painter" Height="450" Width="800">
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="5" Padding="3" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0">
+                                <ContentPresenter/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -16,13 +37,10 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" Background="LightGray">
-            <Button Content="Save" Command="{Binding SaveCommand}"/>
-        </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" Background="LightGray">
             <StackPanel Orientation="Horizontal">
-                <GroupBox Header="Stroke" Foreground="White">
+                <GroupBox Header="Stroke" Foreground="White" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="50" Margin="10,0,0,0">
                             <TextBlock Text="R" Foreground="Red" HorizontalAlignment="Center"/>
@@ -41,14 +59,14 @@
 
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="StrokeThickness" Foreground="White">
+                <GroupBox Header="StrokeThickness" Foreground="White" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal">
                         <Slider Width="100" Value="{Binding StrokeThickness}" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding StrokeThickness}" VerticalAlignment="Center" Margin="5,0,5,0"/>
                         <Line X1="0" Y1="20" X2="50" Y2="20" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" Margin="5,0,5,0"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="FillColor" Foreground="White">
+                <GroupBox Header="FillColor" Foreground="White" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="50" >
                             <TextBlock Text="R" Foreground="Red" HorizontalAlignment="Center"/>
@@ -69,14 +87,29 @@
                 
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="1" Background="LightGray">
+        <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="LightGray">
             <StackPanel>
-                <Button Content="Select" Command="{Binding SelectCommand}"/>
-                <Button Content="Rectangle" Command="{Binding RectangleCommand}"/>
-                <Button Content="Triangle" Command="{Binding TriangleCommand}"/>
-                <Button Content="Ellipse" Command="{Binding EllipseCommand}"/>
-                <Button Content="Brush" Command="{Binding BrushCommand}"/>
-                <Button Content="Erase" Command="{Binding EraseCommand}"/>
+                <Button Command="{Binding SaveCommand}">
+                    <Image Source="Resource/save.png"/>
+                </Button>
+                <Button Command="{Binding SelectCommand}">
+                    <Image Source="Resource/cursor.png"/>
+                </Button>
+                <Button Command="{Binding RectangleCommand}">
+                    <Image Source="Resource/rectangle.png"/>
+                </Button>
+                <Button Command="{Binding TriangleCommand}">
+                    <Image Source="Resource/triangle.png"/>
+                </Button>
+                <Button Command="{Binding EllipseCommand}">
+                    <Image Source="Resource/ellipse.png"/>
+                </Button>
+                <Button Command="{Binding BrushCommand}">
+                    <Image Source="Resource/brush.png"/>
+                </Button>
+                <Button Command="{Binding EraseCommand}">
+                    <Image Source="Resource/eraser.png"/>
+                </Button>
             </StackPanel>
         </Grid>
         <local:CanvasView x:Name="CanvasView" Grid.Row="1" Grid.Column="1"/>
