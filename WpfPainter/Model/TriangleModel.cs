@@ -40,6 +40,8 @@ namespace WpfPainter.Model
                     startPoint,
                 },
             };
+
+            
             return currentTriangle;
         }
 
@@ -52,6 +54,12 @@ namespace WpfPainter.Model
                 new Point(_startPoint.X, mousePoint.Y),
                 new Point(mousePoint.X, mousePoint.Y)
             };
+            //用以繪製包圍的矩形
+            currentTriangle.X = Math.Min(_startPoint.X, mousePoint.X) - 8;
+            currentTriangle.Y = Math.Min(_startPoint.Y, mousePoint.Y) - 8;
+            currentTriangle.Width = Math.Abs(mousePoint.X - _startPoint.X) + 16;
+            currentTriangle.Height = Math.Abs(mousePoint.Y - _startPoint.Y) + 16;
+
         }
         public override void EndCreate()
         {
@@ -92,6 +100,9 @@ namespace WpfPainter.Model
                 newPoints.Add(new Point(p.X + deltaX, p.Y + deltaY));
             }
             PolygonPoints = new PointCollection(newPoints);
+            //用以繪製包圍的矩形
+            X += deltaX;
+            Y += deltaY;
         }
     }
 }

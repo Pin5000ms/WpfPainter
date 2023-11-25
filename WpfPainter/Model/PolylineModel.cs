@@ -35,8 +35,6 @@ namespace WpfPainter.Model
             currentModel = new PolylineModel
             {
                 PolylinePoints = buffer_points,
-                Stroke = Brushes.Red,
-                StrokeThickness = 2,
             };
             return currentModel;
         }

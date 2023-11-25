@@ -8,10 +8,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <DataTemplate x:Key="RectangleDataTemplate" >
             <ContentControl>
                 <ContentControl.Content>
                     <Canvas>
+                        <Rectangle Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Width="{Binding Width}" Height="{Binding Height}" Stroke="Red" StrokeThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+                            <Rectangle.StrokeDashArray>
+                                <DoubleCollection>2 2</DoubleCollection>
+                            </Rectangle.StrokeDashArray>
+                        </Rectangle>
                         <!--用Rectangle會無法實現從右下往左上畫的操作-->
                         <Polygon Points="{Binding PolygonPoints}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" Fill="{Binding FillColor}" />
                     </Canvas>
@@ -23,6 +29,11 @@
             <ContentControl>
                 <ContentControl.Content>
                     <Canvas>
+                        <Rectangle Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Width="{Binding Width}" Height="{Binding Height}" Stroke="Red" StrokeThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+                            <Rectangle.StrokeDashArray>
+                                <DoubleCollection>2 2</DoubleCollection>
+                            </Rectangle.StrokeDashArray>
+                        </Rectangle>
                         <!--用Rectangle會無法實現從右下往左上畫的操作-->
                         <Polygon Points="{Binding PolygonPoints}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" Fill="{Binding FillColor}" />
                     </Canvas>
@@ -34,6 +45,11 @@
             <ContentControl>
                 <ContentControl.Content>
                     <Canvas>
+                        <Rectangle Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Width="{Binding Width}" Height="{Binding Height}" Stroke="Red" StrokeThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+                            <Rectangle.StrokeDashArray>
+                                <DoubleCollection>2 2</DoubleCollection>
+                            </Rectangle.StrokeDashArray>
+                        </Rectangle>
                         <Ellipse Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding FillColor}" />
                     </Canvas>
                 </ContentControl.Content>
@@ -44,6 +60,11 @@
             <ContentControl>
                 <ContentControl.Content>
                     <Canvas>
+                        <Rectangle Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Width="{Binding Width}" Height="{Binding Height}" Stroke="Red" StrokeThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+                            <Rectangle.StrokeDashArray>
+                                <DoubleCollection>2 2</DoubleCollection>
+                            </Rectangle.StrokeDashArray>
+                        </Rectangle>
                         <Polyline Points="{Binding PolylinePoints}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}"/>
                     </Canvas>
                 </ContentControl.Content>
@@ -55,7 +76,8 @@
             MouseLeftButtonDown="drawCanvas_MouseLeftButtonDown" 
             MouseMove ="drawCanvas_MouseMove" 
             MouseLeftButtonUp ="drawCanvas_MouseLeftButtonUp"
-            Background="White">
+            Background="White"
+            ClipToBounds="True">
         <ItemsControl ItemsSource="{Binding Objects}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

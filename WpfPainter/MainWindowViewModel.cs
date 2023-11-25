@@ -24,16 +24,183 @@ namespace WpfPainter
             EllipseCommand = new RelayCommand(o => EllipseMode());
             BrushCommand = new RelayCommand(o => BrushMode());
             EraseCommand = new RelayCommand(o => EraseMode());
+            Stroke = new SolidColorBrush(Color.FromRgb(stroke_R, stroke_G, stroke_B));
+            FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
         }
 
         public RelayCommand SelectCommand { get; set; }
         public RelayCommand RectangleCommand { get; set; }
-
         public RelayCommand TriangleCommand { get; set; }
         public RelayCommand EllipseCommand { get; set; }
         public RelayCommand BrushCommand { get; set; }
-
         public RelayCommand EraseCommand { get; set; }
+
+
+
+
+        private Brush c;
+        public Brush FillColor
+        {
+            get { return c; }
+            set
+            {
+                c = value;
+                OnPropertyChanged();
+                _canvasView.SetProperty(FillColor, Stroke, strokeThickness);
+            }
+        }
+
+
+        private byte fill_R;
+
+        public byte Fill_R
+        {
+            get { return fill_R; }
+            set
+            {
+                fill_R = value;
+                OnPropertyChanged();
+                if (nofill)
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(0, fill_R, fill_G, fill_B));
+                }
+                else
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
+                }
+            }
+        }
+
+
+        private byte fill_G;
+
+        public byte Fill_G
+        {
+            get { return fill_G; }
+            set
+            {
+                fill_G = value;
+                OnPropertyChanged();
+                if (nofill)
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(0, fill_R, fill_G, fill_B));
+                }
+                else
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
+                }
+            }
+        }
+
+        private byte fill_B;
+
+        public byte Fill_B
+        {
+            get { return fill_B; }
+            set
+            {
+                fill_B = value;
+                OnPropertyChanged();
+                if (nofill)
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(0, fill_R, fill_G, fill_B));
+                }
+                else
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
+                }
+            }
+        }
+
+        private bool nofill;
+
+        public bool NoFill
+        {
+            get { return nofill; }
+            set
+            {
+                nofill = value;
+                OnPropertyChanged();
+                if (nofill)
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(0, fill_R, fill_G, fill_B));
+                }
+                else
+                {
+                    FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
+                }
+                
+            }
+        }
+
+
+        private int strokeThickness = 1;
+
+        public int StrokeThickness
+        {
+            get { return strokeThickness; }
+            set
+            {
+                strokeThickness = value;
+                _canvasView.SetProperty(Brushes.Transparent, Stroke, strokeThickness);
+                OnPropertyChanged();
+            }
+        }
+
+
+        private SolidColorBrush stroke;
+
+        public SolidColorBrush Stroke
+        {
+            get { return stroke; }
+            set
+            {
+                stroke = value;
+                _canvasView.SetProperty(FillColor, Stroke, strokeThickness);
+                OnPropertyChanged();
+            }
+        }
+
+        private byte stroke_R;
+
+        public byte Stroke_R
+        {
+            get { return stroke_R; }
+            set
+            {
+                stroke_R = value;
+                OnPropertyChanged();
+                Stroke = new SolidColorBrush(Color.FromRgb(stroke_R, stroke_G, stroke_B));
+            }
+        }
+
+
+        private byte stroke_G;
+
+        public byte Stroke_G
+        {
+            get { return stroke_G; }
+            set
+            {
+                stroke_G = value;
+                OnPropertyChanged();
+                Stroke = new SolidColorBrush(Color.FromRgb(stroke_R, stroke_G, stroke_B));
+            }
+        }
+
+        private byte stroke_B;
+
+        public byte Stroke_B
+        {
+            get { return stroke_B; }
+            set
+            {
+                stroke_B = value;
+                OnPropertyChanged();
+                Stroke = new SolidColorBrush(Color.FromRgb(stroke_R, stroke_G, stroke_B));
+            }
+        }
+
 
 
         private void SelectMode()
@@ -44,25 +211,21 @@ namespace WpfPainter
         private void RectangleMode()
         {
             _canvasView.RectangleMode();
-            _canvasView.SetPen(Brushes.Red, Brushes.Black, 2);
         }
 
         private void TriangleMode()
         {
             _canvasView.TriangleMode();
-            _canvasView.SetPen(Brushes.Red, Brushes.Black, 2);
         }
 
         private void EllipseMode()
         {
             _canvasView.EllipseMode();
-            _canvasView.SetPen(Brushes.Transparent, Brushes.Black, 2);
         }
 
         private void BrushMode()
         {
             _canvasView.PolylineMode();
-            _canvasView.SetPen(Brushes.Transparent, Brushes.Black, 2);
         }
 
         private void EraseMode()

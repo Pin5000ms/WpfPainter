@@ -35,5 +35,10 @@ namespace WpfPainter
         {
 
         }
+
+        public virtual void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)
+        {
+            
+        }
     }
 }

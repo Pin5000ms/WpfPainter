@@ -103,11 +103,10 @@ namespace WpfPainter
         }
 
 
-        public void SetPen(Brush fillColor, SolidColorBrush stroke, double thickness)
+        public void SetProperty(Brush fillColor, SolidColorBrush stroke, double thickness)
         {
-            State.fillColor = fillColor;
-            State.stroke = stroke;
-            State.thickness = thickness;
+            States["Draw"].SetProperty(fillColor, stroke, thickness);
+            States["Select"].SetProperty(fillColor, stroke, thickness);
         }
 
         public void RectangleMode()
@@ -115,6 +114,7 @@ namespace WpfPainter
             State = States["Draw"];
             Cursor = Cursors.Cross;
             State.currentShape = new RectangleModel();
+            ResetSelect();
         }
 
         public void TriangleMode()
@@ -122,6 +122,7 @@ namespace WpfPainter
             State = States["Draw"];
             Cursor = Cursors.Cross;
             State.currentShape = new TriangleModel();
+            ResetSelect();
         }
 
         public void EllipseMode()
@@ -129,6 +130,7 @@ namespace WpfPainter
             State = States["Draw"];
             Cursor = Cursors.Cross;
             State.currentShape = new EllipseModel();
+            ResetSelect();
         }
 
         public void PolylineMode()
@@ -136,17 +138,30 @@ namespace WpfPainter
             State = States["Draw"];
             Cursor = Cursors.Pen;
             State.currentShape = new PolylineModel();
+            ResetSelect();
         }
 
         public void SelectMode()
         {
             State = States["Select"];
             Cursor = Cursors.Arrow;
+            ResetSelect();
         }
 
         public void EraseMode()
         {
             State = States["Erase"];
+            ResetSelect();
+        }
+
+
+        public void ResetSelect()
+        {
+            States["Select"].currentShape = null;
+            foreach (var item in canvasVM.Objects)
+            {
+                item.IsSelected = false;
+            }
         }
     }
 }

@@ -60,8 +60,20 @@ namespace WpfPainter.Model
             }
         }
 
-        private Brush c;
 
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Brush c;
         public Brush FillColor
         {
             get { return c; }

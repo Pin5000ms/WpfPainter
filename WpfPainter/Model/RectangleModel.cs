@@ -55,6 +55,11 @@ namespace WpfPainter.Model
                 new Point(mousePoint.X, mousePoint.Y),
                 new Point(_startPoint.X, mousePoint.Y)
             };
+            //用以繪製包圍的矩形
+            currentRectangle.X = Math.Min(_startPoint.X, mousePoint.X) - 8;
+            currentRectangle.Y = Math.Min(_startPoint.Y, mousePoint.Y) - 8;
+            currentRectangle.Width = Math.Abs(mousePoint.X - _startPoint.X) + 16;
+            currentRectangle.Height = Math.Abs(mousePoint.Y - _startPoint.Y) + 16;
         }
         public override void EndCreate()
         {
@@ -95,6 +100,10 @@ namespace WpfPainter.Model
                 newPoints.Add(new Point(p.X + deltaX, p.Y + deltaY));
             }
             PolygonPoints = new PointCollection(newPoints);
+
+            //用以繪製包圍的矩形
+            X += deltaX;
+            Y += deltaY;
         }
     }
 }

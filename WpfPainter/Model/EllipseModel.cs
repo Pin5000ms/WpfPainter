@@ -11,31 +11,6 @@ namespace WpfPainter.Model
 {
     public class EllipseModel : ModelBase
     {
-
-        //private double radiusX;
-        //public double RadiusX
-        //{
-        //    get { return radiusX; }
-        //    set
-        //    {
-        //        radiusX = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
-        //private double radiusY;
-        //public double RadiusY
-        //{
-        //    get { return radiusY; }
-        //    set
-        //    {
-        //        radiusY = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
         private EllipseModel currentEllipse = null;
         private Point _startPoint;
 

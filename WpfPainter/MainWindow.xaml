@@ -7,12 +7,68 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="Black">
+
+        <Grid Grid.Row="0" Grid.Column="0" Background="Black"/>
+
+        <Grid Grid.Row="0" Grid.Column="1" Background="Black">
             <StackPanel Orientation="Horizontal">
+                <GroupBox Header="Stroke" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="50" Margin="10,0,0,0">
+                            <TextBlock Text="R" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBox Text="{Binding Stroke_R, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Width="50" >
+                            <TextBlock Text="G" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBox Text="{Binding Stroke_G, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Width="50" >
+                            <TextBlock Text="B" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBox Text="{Binding Stroke_B, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <Border Width="30" Height="30" CornerRadius="5" Margin="10,0,10,0" Background="{Binding Stroke}" />
+
+
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="StrokeThickness" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <Slider Width="100" Value="{Binding StrokeThickness}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding StrokeThickness}" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <Line X1="0" Y1="20" X2="50" Y2="20" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" Margin="5,0,5,0"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="FillColor" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="50" >
+                            <TextBlock Text="R" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBox Text="{Binding Fill_R, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Width="50" >
+                            <TextBlock Text="G" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBox Text="{Binding Fill_G, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Width="50" >
+                            <TextBlock Text="B" Foreground="White" HorizontalAlignment="Center"/>
+                            <TextBox Text="{Binding Fill_B, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <CheckBox Content="No Fill" Foreground="White" IsChecked="{Binding NoFill}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                        <Border Width="30" Height="30" CornerRadius="5" Margin="10,0,10,0" Background="{Binding FillColor}" />
+                    </StackPanel>
+                </GroupBox>
+                
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1" Background="Black">
+            <StackPanel>
                 <Button Content="Select" Command="{Binding SelectCommand}"/>
                 <Button Content="Rectangle" Command="{Binding RectangleCommand}"/>
                 <Button Content="Triangle" Command="{Binding TriangleCommand}"/>
@@ -21,6 +77,6 @@
                 <Button Content="Erase" Command="{Binding EraseCommand}"/>
             </StackPanel>
         </Grid>
-        <local:CanvasView x:Name="CanvasView" Grid.Row="1"/>
+        <local:CanvasView x:Name="CanvasView" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Window>
