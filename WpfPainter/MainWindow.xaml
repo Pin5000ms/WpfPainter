@@ -40,7 +40,7 @@
 
         <Grid Grid.Row="0" Grid.Column="1" Background="LightGray">
             <StackPanel Orientation="Horizontal">
-                <GroupBox Header="Stroke" Foreground="White" Margin="5,0,5,0">
+                <GroupBox Header="Stroke" Foreground="White" Margin="0,0,5,0">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="50" Margin="10,0,0,0">
                             <TextBlock Text="R" Foreground="Red" HorizontalAlignment="Center"/>
@@ -89,28 +89,28 @@
         </Grid>
         <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Background="LightGray">
             <StackPanel>
-                <Button Command="{Binding SaveCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Save">
                     <Image Source="Resource/save.png"/>
                 </Button>
-                <Button Command="{Binding SelectCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Select">
                     <Image Source="Resource/cursor.png"/>
                 </Button>
-                <Button Command="{Binding RectangleCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Rectangle">
                     <Image Source="Resource/rectangle.png"/>
                 </Button>
-                <Button Command="{Binding LineCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Line">
                     <Image Source="Resource/line.png"/>
                 </Button>
-                <Button Command="{Binding TriangleCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Triangle">
                     <Image Source="Resource/triangle.png"/>
                 </Button>
-                <Button Command="{Binding EllipseCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Ellipse">
                     <Image Source="Resource/ellipse.png"/>
                 </Button>
-                <Button Command="{Binding BrushCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Brush">
                     <Image Source="Resource/brush.png"/>
                 </Button>
-                <Button Command="{Binding EraseCommand}">
+                <Button Command="{Binding ChangeModeCommand}" CommandParameter="Erase">
                     <Image Source="Resource/eraser.png"/>
                 </Button>
             </StackPanel>

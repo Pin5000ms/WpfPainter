@@ -22,7 +22,6 @@ namespace WpfPainter
             _canvasVM = canvasVM;
         }
 
-
         public virtual void MouseDown(Point startPoint)
         {
 
@@ -35,7 +34,6 @@ namespace WpfPainter
         {
 
         }
-
         public virtual void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)
         {
             

@@ -23,6 +23,7 @@
                 </ContentControl.Content>
             </ContentControl>
         </DataTemplate>
+        
         <DataTemplate x:Key="RectangleDataTemplate">
             <ContentControl>
                 <ContentControl.Content>

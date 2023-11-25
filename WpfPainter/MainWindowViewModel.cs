@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,27 +19,13 @@ namespace WpfPainter
         public MainWindowViewModel(CanvasView canvasView)
         {
             _canvasView = canvasView;
-            SelectCommand = new RelayCommand(o => SelectMode());
-            RectangleCommand = new RelayCommand(o=> RectangleMode());
-            TriangleCommand = new RelayCommand(o => TriangleMode());
-            LineCommand = new RelayCommand(o => LineMode());
-            EllipseCommand = new RelayCommand(o => EllipseMode());
-            BrushCommand = new RelayCommand(o => BrushMode());
-            EraseCommand = new RelayCommand(o => EraseMode());
-            SaveCommand = new RelayCommand(o => Save());
+            ChangeModeCommand = new RelayCommand(ChangeMode);
             Stroke = new SolidColorBrush(Color.FromRgb(stroke_R, stroke_G, stroke_B));
             FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
             Load();
         }
 
-        public RelayCommand SelectCommand { get; set; }
-        public RelayCommand RectangleCommand { get; set; }
-        public RelayCommand TriangleCommand { get; set; }
-        public RelayCommand LineCommand { get; set; }
-        public RelayCommand EllipseCommand { get; set; }
-        public RelayCommand BrushCommand { get; set; }
-        public RelayCommand EraseCommand { get; set; }
-        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand ChangeModeCommand { get; set; }
 
 
         #region FillColor
@@ -134,7 +121,6 @@ namespace WpfPainter
         }
         #endregion
 
-
         #region Stroke
         private int strokeThickness = 1;
         public int StrokeThickness
@@ -198,45 +184,34 @@ namespace WpfPainter
         }
         #endregion
 
-
-        private void SelectMode()
+        private void ChangeMode(object parameter)
         {
-            _canvasView.SelectMode();
-        }
-
-        private void RectangleMode()
-        {
-            _canvasView.RectangleMode();
-        }
-
-        private void TriangleMode()
-        {
-            _canvasView.TriangleMode();
-        }
-
-        private void LineMode()
-        {
-            _canvasView.LineMode();
-        }
-
-        private void EllipseMode()
-        {
-            _canvasView.EllipseMode();
-        }
-
-        private void BrushMode()
-        {
-            _canvasView.PolylineMode();
-        }
-
-        private void EraseMode()
-        {
-            _canvasView.EraseMode();
-        }
-
-        private void Save()
-        {
-            _canvasView.Save();
+            switch (parameter)
+            {
+                case "Select":
+                    _canvasView.SelectMode();
+                    break;
+                case "Rectangle":
+                    _canvasView.RectangleMode();
+                    break;
+                case "Triangle":
+                    _canvasView.TriangleMode();
+                    break;
+                case "Line":
+                    _canvasView.LineMode();
+                    break;
+                case "Ellipse":
+                    _canvasView.EllipseMode();
+                    break;
+                case "Brush":
+                    _canvasView.PolylineMode();
+                    break;
+                case "Save":
+                    _canvasView.Save();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void Load()
