@@ -11,6 +11,7 @@ namespace WpfPainter.Model
 {
     public class RectangleModel: ModelBase
     {
+
         private PointCollection polygonPoints;
 
         public PointCollection PolygonPoints

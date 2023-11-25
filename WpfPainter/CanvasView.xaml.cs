@@ -1,5 +1,9 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -143,6 +147,7 @@ namespace WpfPainter
 
         public void SelectMode()
         {
+            (States["Draw"] as DrawingState).newInstance = null;
             State = States["Select"];
             Cursor = Cursors.Arrow;
             ResetSelect();
@@ -154,6 +159,87 @@ namespace WpfPainter
             ResetSelect();
         }
 
+
+        public void Save()
+        {
+            List<RectangleModel> Rectangle = new List<RectangleModel>();
+            List<TriangleModel> Triangle = new List<TriangleModel>();
+            List<EllipseModel> Ellipse = new List<EllipseModel>();
+            List<PolylineModel> Polyline = new List<PolylineModel>();
+            foreach (var item in canvasVM.Objects) 
+            { 
+                if(item is RectangleModel)
+                {
+                    Rectangle.Add(item as RectangleModel);
+                }
+                else if(item is TriangleModel) 
+                {
+                    Triangle.Add(item as TriangleModel);
+                }
+                else if (item is EllipseModel) 
+                {
+                    Ellipse.Add(item as EllipseModel);
+                }
+                else if ((item is PolylineModel))
+                {
+                    Polyline.Add(item as PolylineModel);
+                }
+            }
+
+
+            string jsonString = JsonConvert.SerializeObject(Rectangle);
+            string filePath = "Rectangle.json";
+            File.WriteAllText(filePath, jsonString);
+
+            jsonString = JsonConvert.SerializeObject(Triangle);
+            filePath = "Triangle.json";
+            File.WriteAllText(filePath, jsonString);
+
+            jsonString = JsonConvert.SerializeObject(Ellipse);
+            filePath = "Ellipse.json";
+            File.WriteAllText(filePath, jsonString);
+
+            jsonString = JsonConvert.SerializeObject(Polyline);
+            filePath = "Polyline.json";
+            File.WriteAllText(filePath, jsonString);
+        }
+
+        public void Load()
+        {
+            string filePath = "Rectangle.json";
+            string jsonString = File.ReadAllText(filePath);
+            var Objects = JsonConvert.DeserializeObject<List<RectangleModel>>(jsonString);
+            foreach (var item in Objects)
+            {
+                canvasVM.Objects.Add(item);
+            }
+
+            filePath = "Triangle.json";
+            jsonString = File.ReadAllText(filePath);
+            var Objects2 = JsonConvert.DeserializeObject<List<TriangleModel>>(jsonString);
+            foreach (var item in Objects2)
+            {
+                canvasVM.Objects.Add(item);
+            }
+
+            filePath = "Ellipse.json";
+            jsonString = File.ReadAllText(filePath);
+            var Objects3 = JsonConvert.DeserializeObject<List<EllipseModel>>(jsonString);
+            foreach (var item in Objects3)
+            {
+                canvasVM.Objects.Add(item);
+            }
+
+
+            filePath = "Polyline.json";
+            jsonString = File.ReadAllText(filePath);
+            var Objects4 = JsonConvert.DeserializeObject<List<PolylineModel>>(jsonString);
+            foreach (var item in Objects4)
+            {
+                canvasVM.Objects.Add(item);
+            }
+
+        }
 
         public void ResetSelect()
         {

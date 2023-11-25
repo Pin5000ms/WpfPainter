@@ -10,6 +10,7 @@ namespace WpfPainter.Model
 {
     public class PolylineModel : ModelBase
     {
+
         private PointCollection polylinePoints;
 
         public PointCollection PolylinePoints

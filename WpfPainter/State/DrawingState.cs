@@ -17,7 +17,7 @@ namespace WpfPainter
         {
         }
 
-        ModelBase newInstance;
+        public ModelBase newInstance;
         public override void MouseDown(Point startPoint)
         {
             newInstance = currentShape.Create(startPoint);

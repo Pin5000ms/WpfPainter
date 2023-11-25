@@ -10,6 +10,7 @@ namespace WpfPainter.Model
 {
     public class TriangleModel : ModelBase
     {
+
         private PointCollection polygonPoints;
 
         public PointCollection PolygonPoints

@@ -36,10 +36,5 @@ namespace WpfPainter
             }
         }
 
-        public void Test()
-        {
-            Objects.Add(new EllipseModel { X = 100, Y = 200, Width = 20, Height = 20, FillColor = Brushes.Red });
-        }
-
     }
 }

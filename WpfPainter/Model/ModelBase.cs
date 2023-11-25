@@ -110,8 +110,6 @@ namespace WpfPainter.Model
             }
         }
 
-
-
         public virtual void MoveBy(double deltaX, double deltaY)
         {
             X += deltaX;

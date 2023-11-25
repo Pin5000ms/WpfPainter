@@ -24,8 +24,10 @@ namespace WpfPainter
             EllipseCommand = new RelayCommand(o => EllipseMode());
             BrushCommand = new RelayCommand(o => BrushMode());
             EraseCommand = new RelayCommand(o => EraseMode());
+            SaveCommand = new RelayCommand(o => Save());
             Stroke = new SolidColorBrush(Color.FromRgb(stroke_R, stroke_G, stroke_B));
             FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
+            Load();
         }
 
         public RelayCommand SelectCommand { get; set; }
@@ -35,9 +37,10 @@ namespace WpfPainter
         public RelayCommand BrushCommand { get; set; }
         public RelayCommand EraseCommand { get; set; }
 
+        public RelayCommand SaveCommand { get; set; }
 
 
-
+        #region FillColor
         private Brush c;
         public Brush FillColor
         {
@@ -52,7 +55,6 @@ namespace WpfPainter
 
 
         private byte fill_R;
-
         public byte Fill_R
         {
             get { return fill_R; }
@@ -73,7 +75,6 @@ namespace WpfPainter
 
 
         private byte fill_G;
-
         public byte Fill_G
         {
             get { return fill_G; }
@@ -93,7 +94,6 @@ namespace WpfPainter
         }
 
         private byte fill_B;
-
         public byte Fill_B
         {
             get { return fill_B; }
@@ -113,7 +113,6 @@ namespace WpfPainter
         }
 
         private bool nofill;
-
         public bool NoFill
         {
             get { return nofill; }
@@ -129,13 +128,14 @@ namespace WpfPainter
                 {
                     FillColor = new SolidColorBrush(Color.FromArgb(255, fill_R, fill_G, fill_B));
                 }
-                
+
             }
         }
+        #endregion
 
 
+        #region Stroke
         private int strokeThickness = 1;
-
         public int StrokeThickness
         {
             get { return strokeThickness; }
@@ -149,7 +149,6 @@ namespace WpfPainter
 
 
         private SolidColorBrush stroke;
-
         public SolidColorBrush Stroke
         {
             get { return stroke; }
@@ -162,7 +161,6 @@ namespace WpfPainter
         }
 
         private byte stroke_R;
-
         public byte Stroke_R
         {
             get { return stroke_R; }
@@ -174,9 +172,7 @@ namespace WpfPainter
             }
         }
 
-
         private byte stroke_G;
-
         public byte Stroke_G
         {
             get { return stroke_G; }
@@ -189,7 +185,6 @@ namespace WpfPainter
         }
 
         private byte stroke_B;
-
         public byte Stroke_B
         {
             get { return stroke_B; }
@@ -200,7 +195,7 @@ namespace WpfPainter
                 Stroke = new SolidColorBrush(Color.FromRgb(stroke_R, stroke_G, stroke_B));
             }
         }
-
+        #endregion
 
 
         private void SelectMode()
@@ -231,6 +226,16 @@ namespace WpfPainter
         private void EraseMode()
         {
             _canvasView.EraseMode();
+        }
+
+        private void Save()
+        {
+            _canvasView.Save();
+        }
+
+        private void Load()
+        {
+            _canvasView.Load();
         }
     }
 }
