@@ -129,7 +129,7 @@ namespace WpfPainter
             set
             {
                 strokeThickness = value;
-                _canvasView.SetProperty(Brushes.Transparent, Stroke, strokeThickness);
+                _canvasView.SetProperty(FillColor, Stroke, strokeThickness);
                 OnPropertyChanged();
             }
         }
