@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net" modified="2023-11-26T11:37:24.698Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="a_r4j22Hx2v7moM-1KFa" version="22.1.4" type="device">
+  <diagram name="第 1 页" id="E3T5DQ8kMOtmV97ByJWk">
+    <mxGraphModel dx="2263" dy="741" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7jizF-deDTfeuReVPlXQ-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;StateBase&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ _canvasVM: CanvasViewModel&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ currentShape: ModelBase&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ fillColor: Brush&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ stroke: SolidColorBrush&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ thickness: double&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ MouseDown(pt: Point): bool&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ MouseMove(pt: Point): bool&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ MouseUp(): bool&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ Undo(): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ Redo(): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+&amp;nbsp;SetProperty(c: Brush,stroke:SolidColorBrush ,thickness: double ):void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="310" y="40" width="420" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="7jizF-deDTfeuReVPlXQ-23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="330" as="targetPoint" />
+            <mxPoint x="265" y="411.9999999999999" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="7jizF-deDTfeuReVPlXQ-31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="310" as="targetPoint" />
+            <Array as="points" />
+            <mxPoint x="520" y="410" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="7jizF-deDTfeuReVPlXQ-27">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="310" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="910" y="370" />
+              <mxPoint x="520" y="370" />
+            </Array>
+            <mxPoint x="785" y="411.9999999999999" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-21" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="7jizF-deDTfeuReVPlXQ-1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="520" y="330" as="sourcePoint" />
+            <mxPoint x="530" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-23" value="DrawingState" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="412" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-24" value="- undoStack:Stack&amp;lt;ModelBase&amp;gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- redoStack:Stack&amp;lt;ModelBase&amp;gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;+ newInstance: ModelBase" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-23">
+          <mxGeometry y="26" width="300" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-25" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-23">
+          <mxGeometry y="90" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-26" value="&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseDown(pt: Point): bool&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseMove(pt: Point): bool&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseUp(): bool&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ Undo(): void&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ Redo(): void&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+&amp;nbsp;SetProperty(c: Brush,stroke:SolidColorBrush ,thickness: double ):void&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-23">
+          <mxGeometry y="98" width="300" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-27" value="EraseState" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="412" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-28" value="- undoStack:Stack&amp;lt;ModelBase&amp;gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- redoStack:Stack&amp;lt;ModelBase&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-27">
+          <mxGeometry y="26" width="300" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-27">
+          <mxGeometry y="90" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-30" value="&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseDown(pt: Point): bool&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseMove(pt: Point): bool&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseUp(): bool&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ Undo(): void&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ Redo(): void&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+&amp;nbsp;SetProperty(c: Brush,stroke:SolidColorBrush ,thickness: double ):void&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-27">
+          <mxGeometry y="98" width="300" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-31" value="SelectedState" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="412" width="300" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-32" value="- undoStack: Stack&amp;lt;Move&amp;gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- redoStack: Stack&amp;lt;Move&amp;gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- preX: double&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- preY: double&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- startX: double&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;- startY: double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-31">
+          <mxGeometry y="26" width="300" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-33" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-31">
+          <mxGeometry y="130" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="7jizF-deDTfeuReVPlXQ-34" value="&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseDown(pt: Point): bool&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseMove(pt: Point): bool&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ MouseUp(): bool&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ Undo(): void&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+ Redo(): void&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;+&amp;nbsp;SetProperty(c: Brush,stroke:SolidColorBrush ,thickness: double ):void&lt;/p&gt;&lt;p style=&quot;border-color: var(--border-color); margin: 0px 0px 0px 4px;&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/p&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7jizF-deDTfeuReVPlXQ-31">
+          <mxGeometry y="138" width="300" height="152" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
