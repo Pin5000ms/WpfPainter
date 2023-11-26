@@ -1,24 +1,12 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Linq;
 using WpfPainter.Model;
 
 namespace WpfPainter
@@ -32,7 +20,7 @@ namespace WpfPainter
         StateBase State;
         CanvasViewModel canvasVM = new CanvasViewModel();
 
-        public Dictionary<string ,StateBase> States = new Dictionary<string, StateBase>();
+        public Dictionary<string, StateBase> States = new Dictionary<string, StateBase>();
         public CanvasView()
         {
             InitializeComponent();
@@ -43,28 +31,62 @@ namespace WpfPainter
             State = States["Select"];
         }
 
+
+        private Stack<StateBase> undoStack = new Stack<StateBase>();//紀錄有做出變更的State
+        private Stack<StateBase> redoStack = new Stack<StateBase>();
         private void drawCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point startPoint = e.GetPosition(drawCanvas);
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                State.MouseDown(startPoint);
+                bool addRedo = State.MouseDown(startPoint);//如果當前State有做出變更，addRedo=true
+                if (addRedo)
+                {
+                    undoStack.Push(State);
+                }
             }
         }
-        
+
 
         private void drawCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePosition = e.GetPosition(drawCanvas);
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                State.MouseMove(mousePosition);
+                bool addRedo = State.MouseMove(mousePosition);//如果當前State有做出變更，addRedo=true
+                if (addRedo)
+                {
+                    undoStack.Push(State);
+                }
             }
         }
 
         private void drawCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            State.MouseUp();
+            bool addRedo = State.MouseUp();
+            if (addRedo)
+            {
+                undoStack.Push(State);
+            }
+        }
+
+        public void Undo()
+        {
+            if (undoStack.Count != 0)
+            {
+                var lastState = undoStack.Pop();//拿出上一個有做出變更的State
+                lastState.Undo();
+                redoStack.Push(lastState);
+            }
+        }
+
+        public void Redo()
+        {
+            if (redoStack.Count != 0)
+            {
+                var redoState = redoStack.Pop();
+                redoState.Redo();
+            }
         }
 
         public void SetProperty(Brush fillColor, SolidColorBrush stroke, double thickness)
@@ -124,7 +146,7 @@ namespace WpfPainter
         public void EraseMode()
         {
             State = States["Erase"];
-            Cursor customCursor = new Cursor(Application.GetResourceStream(new Uri("Resource/eraser.cur", UriKind.Relative)).Stream); 
+            Cursor customCursor = new Cursor(Application.GetResourceStream(new Uri("Resource/eraser.cur", UriKind.Relative)).Stream);
             Cursor = customCursor;
             ResetSelect();
         }
@@ -180,8 +202,8 @@ namespace WpfPainter
                 canvasVM.Objects.Add(item);
             }
         }
-        
 
-        
+
+
     }
 }

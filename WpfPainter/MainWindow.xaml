@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfPainter"
         mc:Ignorable="d"
-        Title="WPF Painter" Height="450" Width="800">
+        Title="WPF Painter" Height="500" Width="900">
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">
@@ -40,6 +40,17 @@
 
         <Grid Grid.Row="0" Grid.Column="1" Background="LightGray">
             <StackPanel Orientation="Horizontal">
+                <GroupBox Header="Undo/Redo" Foreground="White" Margin="0,0,5,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Command="{Binding ChangeModeCommand}" CommandParameter="Undo">
+                            <Image Source="Resource/undo.png"/>
+                        </Button>
+                        <Button Command="{Binding ChangeModeCommand}" CommandParameter="Redo">
+                            <Image Source="Resource/redo.png"/>
+                        </Button>
+                    </StackPanel>
+                </GroupBox>
+                
                 <GroupBox Header="Stroke" Foreground="White" Margin="0,0,5,0">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="50" Margin="10,0,0,0">
@@ -92,6 +103,7 @@
                 <Button Command="{Binding ChangeModeCommand}" CommandParameter="Save">
                     <Image Source="Resource/save.png"/>
                 </Button>
+                
                 <Button Command="{Binding ChangeModeCommand}" CommandParameter="Select">
                     <Image Source="Resource/cursor.png"/>
                 </Button>

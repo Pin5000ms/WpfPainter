@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using WpfPainter.Model;
@@ -22,21 +17,31 @@ namespace WpfPainter
             _canvasVM = canvasVM;
         }
 
-        public virtual void MouseDown(Point startPoint)
+        public virtual bool MouseDown(Point startPoint)
+        {
+            return false;//true: 有做出變更，需要加到Undo Stack
+        }
+        public virtual bool MouseMove(Point mousePosition)
+        {
+            return false;//true: 有做出變更，需要加到Undo Stack
+        }
+        public virtual bool MouseUp()
+        {
+            return false;//true: 有做出變更，需要加到Undo Stack
+        }
+
+        public virtual void Undo()
         {
 
         }
-        public virtual void MouseMove(Point mousePosition)
-        {
 
-        }
-        public virtual void MouseUp()
+        public virtual void Redo()
         {
 
         }
         public virtual void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)
         {
-            
+
         }
     }
 }

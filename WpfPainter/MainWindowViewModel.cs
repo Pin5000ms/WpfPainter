@@ -212,6 +212,12 @@ namespace WpfPainter
                 case "Save":
                     _canvasView.Save();
                     break;
+                case "Undo":
+                    _canvasView.Undo();
+                    break;
+                case "Redo":
+                    _canvasView.Redo();
+                    break;
                 default:
                     break;
             }

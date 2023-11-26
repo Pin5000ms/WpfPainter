@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
+using WpfPainter.Model;
 
 namespace WpfPainter
 {
@@ -11,11 +8,15 @@ namespace WpfPainter
     {
         public EraseState(CanvasViewModel canvasVM) : base(canvasVM)
         {
-             
+
         }
 
-        public override void MouseDown(Point startPoint)
+        private Stack<ModelBase> undoStack = new Stack<ModelBase>();
+        private Stack<ModelBase> redoStack = new Stack<ModelBase>();
+        public override bool MouseDown(Point startPoint)
         {
+            currentShape = null;
+            bool result = false;
             foreach (var item in _canvasVM.Objects)
             {
                 if (item.IsPointInside(startPoint))
@@ -23,12 +24,20 @@ namespace WpfPainter
                     currentShape = item;
                 }
             }
-            _canvasVM.Objects.Remove(currentShape);
+            if (currentShape != null)
+            {
+                _canvasVM.Objects.Remove(currentShape);
+                undoStack.Push(currentShape);
+                result = true;
+            }
+            return result;
         }
 
 
-        public override void MouseMove(Point mousePosition)
+        public override bool MouseMove(Point mousePosition)
         {
+            currentShape = null;
+            bool result = false;
             foreach (var item in _canvasVM.Objects)
             {
                 if (item.IsPointInside(mousePosition))
@@ -36,11 +45,38 @@ namespace WpfPainter
                     currentShape = item;
                 }
             }
-            _canvasVM.Objects.Remove(currentShape);
+            if (currentShape != null)
+            {
+                _canvasVM.Objects.Remove(currentShape);
+                undoStack.Push(currentShape);
+                result = true;
+            }
+            return result;
         }
-        public override void MouseUp()
+        public override bool MouseUp()
         {
             currentShape = null;
+            return false;
+        }
+
+
+        public override void Undo()
+        {
+            if (undoStack.Count > 0)
+            {
+                ModelBase lastAction = undoStack.Pop();
+                _canvasVM.Objects.Add(lastAction);
+                redoStack.Push(lastAction);
+            }
+        }
+
+        public override void Redo()
+        {
+            if (redoStack.Count > 0)
+            {
+                ModelBase redoAction = redoStack.Pop();
+                _canvasVM.Objects.Remove(redoAction);
+            }
         }
     }
 }

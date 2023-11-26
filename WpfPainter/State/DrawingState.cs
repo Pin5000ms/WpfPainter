@@ -1,13 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows;
-using WpfPainter.Model;
-using System.Windows.Input;
 using System.Windows.Media;
+using WpfPainter.Model;
 
 namespace WpfPainter
 {
@@ -17,21 +11,27 @@ namespace WpfPainter
         {
         }
 
+        private Stack<ModelBase> undoStack = new Stack<ModelBase>();
+        private Stack<ModelBase> redoStack = new Stack<ModelBase>();
+
         public ModelBase newInstance;
-        public override void MouseDown(Point startPoint)
+        public override bool MouseDown(Point startPoint)
         {
             newInstance = currentShape.Create(startPoint);
             newInstance.SetProperty(fillColor, stroke, thickness);
             _canvasVM.Objects.Add(newInstance);
+            undoStack.Push(newInstance);
+            return true;
         }
-        public override void MouseMove(Point mousePosition)
+        public override bool MouseMove(Point mousePosition)
         {
             if (currentShape != null)
             {
                 currentShape.AdjustSize(mousePosition);
             }
+            return false;
         }
-        public override void MouseUp()
+        public override bool MouseUp()
         {
             //畫完時要自動選取當前形狀
             foreach (var item in _canvasVM.Objects)
@@ -39,9 +39,27 @@ namespace WpfPainter
                 item.IsSelected = false;
             }
             currentShape.EndCreate();
+            return false;
         }
 
+        public override void Undo()
+        {
+            if (undoStack.Count > 0)
+            {
+                ModelBase lastAction = undoStack.Pop();
+                _canvasVM.Objects.Remove(lastAction);
+                redoStack.Push(lastAction);
+            }
+        }
 
+        public override void Redo()
+        {
+            if (redoStack.Count > 0)
+            {
+                ModelBase redoAction = redoStack.Pop();
+                _canvasVM.Objects.Add(redoAction);
+            }
+        }
         public override void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)
         {
             fillColor = _fillColor;
