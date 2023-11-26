@@ -13,11 +13,7 @@
             <ContentControl>
                 <ContentControl.Content>
                     <Canvas>
-                        <Rectangle Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Width="{Binding Width}" Height="{Binding Height}" Stroke="Red" StrokeThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
-                            <Rectangle.StrokeDashArray>
-                                <DoubleCollection>2 2</DoubleCollection>
-                            </Rectangle.StrokeDashArray>
-                        </Rectangle>
+                        <Line Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" X1="{Binding X1}" X2="{Binding X2}" Y1="{Binding Y1}" Y2="{Binding Y2}" Stroke="Red" StrokeThickness="{Binding OutlineThickness}"/>
                         <Line X1="{Binding X1}" X2="{Binding X2}" Y1="{Binding Y1}" Y2="{Binding Y2}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}" />
                     </Canvas>
                 </ContentControl.Content>
@@ -75,11 +71,7 @@
             <ContentControl>
                 <ContentControl.Content>
                     <Canvas>
-                        <Rectangle Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Width="{Binding Width}" Height="{Binding Height}" Stroke="Red" StrokeThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
-                            <Rectangle.StrokeDashArray>
-                                <DoubleCollection>2 2</DoubleCollection>
-                            </Rectangle.StrokeDashArray>
-                        </Rectangle>
+                        <Polyline Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}" Points="{Binding PolylinePoints}" Stroke="Red" StrokeThickness="{Binding OutlineThickness}"/>
                         <Polyline Points="{Binding PolylinePoints}" Stroke="{Binding Stroke}" StrokeThickness="{Binding StrokeThickness}"/>
                     </Canvas>
                 </ContentControl.Content>

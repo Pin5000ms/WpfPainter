@@ -27,13 +27,11 @@ namespace WpfPainter.Model
             }
         }
 
-
-        private RectangleModel currentRectangle = null;
         private Point _startPoint;
         public override ModelBase Create(Point startPoint)
         {
             _startPoint = startPoint;
-            currentRectangle = new RectangleModel
+            currentModel = new RectangleModel
             {
                 PolygonPoints = new PointCollection()
                 {
@@ -43,13 +41,13 @@ namespace WpfPainter.Model
                     startPoint
                 },
             };
-            return currentRectangle;
+            return currentModel;
         }
 
         public override void AdjustSize(Point mousePoint)
         {
             // 更新多邊形的頂點，以實現矩形的調整
-            currentRectangle.PolygonPoints = new PointCollection()
+            (currentModel as RectangleModel).PolygonPoints = new PointCollection()
             {
                 new Point(_startPoint.X, _startPoint.Y),
                 new Point(mousePoint.X, _startPoint.Y),
@@ -57,15 +55,12 @@ namespace WpfPainter.Model
                 new Point(_startPoint.X, mousePoint.Y)
             };
             //用以繪製包圍的矩形
-            currentRectangle.X = Math.Min(_startPoint.X, mousePoint.X) - 8;
-            currentRectangle.Y = Math.Min(_startPoint.Y, mousePoint.Y) - 8;
-            currentRectangle.Width = Math.Abs(mousePoint.X - _startPoint.X) + 16;
-            currentRectangle.Height = Math.Abs(mousePoint.Y - _startPoint.Y) + 16;
+            currentModel.X = Math.Min(_startPoint.X, mousePoint.X) - 8;
+            currentModel.Y = Math.Min(_startPoint.Y, mousePoint.Y) - 8;
+            currentModel.Width = Math.Abs(mousePoint.X - _startPoint.X) + 16;
+            currentModel.Height = Math.Abs(mousePoint.Y - _startPoint.Y) + 16;
         }
-        public override void EndCreate()
-        {
-            currentRectangle = null;
-        }
+
 
         public override bool IsPointInside(Point point)
         {

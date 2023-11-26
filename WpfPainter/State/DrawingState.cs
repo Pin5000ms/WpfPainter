@@ -21,9 +21,7 @@ namespace WpfPainter
         public override void MouseDown(Point startPoint)
         {
             newInstance = currentShape.Create(startPoint);
-            newInstance.FillColor = fillColor;
-            newInstance.Stroke = stroke;
-            newInstance.StrokeThickness = thickness;
+            newInstance.SetProperty(fillColor, stroke, thickness);
             _canvasVM.Objects.Add(newInstance);
         }
         public override void MouseMove(Point mousePosition)
@@ -35,12 +33,11 @@ namespace WpfPainter
         }
         public override void MouseUp()
         {
+            //畫完時要自動選取當前形狀
             foreach (var item in _canvasVM.Objects)
             {
                 item.IsSelected = false;
             }
-            //畫完時要自動選取當前形狀
-            newInstance.IsSelected = true;
             currentShape.EndCreate();
         }
 
@@ -54,9 +51,7 @@ namespace WpfPainter
             //當前畫完的項目改變顏色
             if (newInstance != null)
             {
-                newInstance.Stroke = stroke;
-                newInstance.StrokeThickness = thickness;
-                newInstance.FillColor = fillColor;
+                newInstance.SetProperty(fillColor, stroke, thickness);
             }
         }
     }

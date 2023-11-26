@@ -56,37 +56,57 @@ namespace WpfPainter
         }
 
 
-        private LineModel currentLine = null;
+        private double outlineThickness;
+
+        public double OutlineThickness
+        {
+            get { return outlineThickness; }
+            set
+            {
+                outlineThickness = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Point _startPoint;
         public override ModelBase Create(Point startPoint)
         {
             _startPoint = startPoint;
-            currentLine = new LineModel
+            currentModel = new LineModel
             {
                 X1 = startPoint.X,
                 Y1 = startPoint.Y,
                 X2 = startPoint.X,
                 Y2 = startPoint.Y
             };
-            return currentLine;
+            return currentModel;
         }
 
         public override void AdjustSize(Point mousePoint)
         {
             // 更新多邊形的頂點，以實現矩形的調整
-            currentLine.X2 = mousePoint.X;
-            currentLine.Y2 = mousePoint.Y;
+            (currentModel as LineModel).X2 = mousePoint.X;
+            (currentModel as LineModel).Y2 = mousePoint.Y;
             //用以繪製包圍的矩形
-            currentLine.X = Math.Min(_startPoint.X, mousePoint.X) - 8;
-            currentLine.Y = Math.Min(_startPoint.Y, mousePoint.Y) - 8;
-            currentLine.Width = Math.Abs(mousePoint.X - _startPoint.X) + 16;
-            currentLine.Height = Math.Abs(mousePoint.Y - _startPoint.Y) + 16;
-        }
-        public override void EndCreate()
-        {
-            currentLine = null;
+            currentModel.X = Math.Min(_startPoint.X, mousePoint.X) - 8;
+            currentModel.Y = Math.Min(_startPoint.Y, mousePoint.Y) - 8;
+            currentModel.Width = Math.Abs(mousePoint.X - _startPoint.X) + 16;
+            currentModel.Height = Math.Abs(mousePoint.Y - _startPoint.Y) + 16;
         }
 
+        public override bool IsPointInside(Point point)
+        {
+            double a = Y2 - Y1;
+            double b = X1 - X2;
+            double c = X2 * Y1 - X1 * Y2;
+
+            double distance = Math.Abs(a * point.X + b * point.Y + c) / Math.Sqrt(a * a + b * b);
+
+            // 設定一個閾值，小於這個閾值視為在直線上
+            double epsilon = 10;
+
+            return distance < epsilon;
+        }
 
         public override void MoveBy(double deltaX, double deltaY)
         {
@@ -98,6 +118,12 @@ namespace WpfPainter
             //用以繪製包圍的矩形
             X += deltaX;
             Y += deltaY;
+        }
+
+        public override void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)
+        {
+            base.SetProperty(_fillColor, _stroke, _thickness);
+            OutlineThickness = StrokeThickness + 2;
         }
     }
 }

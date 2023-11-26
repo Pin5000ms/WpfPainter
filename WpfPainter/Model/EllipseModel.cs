@@ -11,13 +11,12 @@ namespace WpfPainter.Model
 {
     public class EllipseModel : ModelBase
     {
-        private EllipseModel currentEllipse = null;
         private Point _startPoint;
 
         public override ModelBase Create(Point startPoint)
         {
             _startPoint = startPoint;
-            currentEllipse = new EllipseModel
+            currentModel = new EllipseModel
             {
                 X = startPoint.X,
                 Y = startPoint.Y,
@@ -25,12 +24,12 @@ namespace WpfPainter.Model
                 StrokeThickness = 2,
                 FillColor = Brushes.Red
             };
-            return currentEllipse;
+            return currentModel;
         }
 
         public override void AdjustSize(Point mousePoint)
         {
-            if (currentEllipse != null)
+            if (currentModel != null)
             {
                 double width = Math.Abs(mousePoint.X - _startPoint.X);
                 double height = Math.Abs(mousePoint.Y - _startPoint.Y);
@@ -39,19 +38,16 @@ namespace WpfPainter.Model
                 double x = Math.Min(_startPoint.X, mousePoint.X);
                 double y = Math.Min(_startPoint.Y, mousePoint.Y);
 
-                currentEllipse.X = x;
-                currentEllipse.Y = y;
+                currentModel.X = x;
+                currentModel.Y = y;
 
                 // 設定橢圓的寬度和高度
-                currentEllipse.Width = width;
-                currentEllipse.Height = height;
+                currentModel.Width = width;
+                currentModel.Height = height;
 
             }
         }
-        public override void EndCreate()
-        {
-            currentEllipse = null;
-        }
+
 
         public override bool IsPointInside(Point point)
         {

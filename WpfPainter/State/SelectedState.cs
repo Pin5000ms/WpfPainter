@@ -65,9 +65,7 @@ namespace WpfPainter
             //當前選擇的項目改變顏色
             if (currentShape != null)
             {
-                currentShape.Stroke = stroke;
-                currentShape.StrokeThickness = thickness;
-                currentShape.FillColor = fillColor;
+                currentShape.SetProperty(fillColor, stroke, thickness);
             }
         }
     }

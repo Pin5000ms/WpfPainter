@@ -126,6 +126,14 @@ namespace WpfPainter.Model
             return result;
         }
 
+        public ModelBase currentModel = null;
+
+        public virtual void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)
+        {
+            FillColor = _fillColor;
+            Stroke = _stroke;
+            StrokeThickness = _thickness;
+        }
 
         public virtual ModelBase Create(Point startPoint)
         {
@@ -139,7 +147,9 @@ namespace WpfPainter.Model
 
         public virtual void EndCreate()
         {
-
+            if(currentModel != null)
+                currentModel.IsSelected = true;
+            currentModel = null;
         }
 
     }

@@ -26,7 +26,17 @@ namespace WpfPainter.Model
             }
         }
 
-        PolylineModel currentModel = null;
+        private double outlineThickness;
+
+        public double OutlineThickness
+        {
+            get { return outlineThickness; }
+            set
+            {
+                outlineThickness = value;
+                OnPropertyChanged();
+            }
+        }
 
         PointCollection buffer_points = new PointCollection();
         public override ModelBase Create(Point startPoint)
@@ -43,12 +53,9 @@ namespace WpfPainter.Model
         public override void AdjustSize(Point mousePoint)
         {
             buffer_points.Add(mousePoint);
-            currentModel.PolylinePoints = new PointCollection(buffer_points);
+            (currentModel as PolylineModel).PolylinePoints = new PointCollection(buffer_points);
         }
-        public override void EndCreate()
-        {
-            currentModel = null;
-        }
+
 
         public override bool IsPointInside(Point point)
         {
@@ -56,7 +63,7 @@ namespace WpfPainter.Model
             for (int i = 0; i < PolylinePoints.Count; i++)
             {
                 double dist = (point.X - PolylinePoints[i].X) * (point.X - PolylinePoints[i].X) + (point.Y - PolylinePoints[i].Y) * (point.Y - PolylinePoints[i].Y);
-                if (dist < 25)
+                if (dist < 100)
                 {
                     return true;
                 }
@@ -72,6 +79,12 @@ namespace WpfPainter.Model
                 newPoints.Add(new Point(p.X + deltaX, p.Y + deltaY));
             }
             PolylinePoints = new PointCollection(newPoints);
+        }
+
+        public override void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)
+        {
+            base.SetProperty(_fillColor, _stroke, _thickness);
+            OutlineThickness = StrokeThickness + 2;
         }
     }
 }

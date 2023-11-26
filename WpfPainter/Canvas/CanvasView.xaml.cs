@@ -20,7 +20,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using WpfPainter.Model;
-using System.Windows.Input;
 
 namespace WpfPainter
 {
