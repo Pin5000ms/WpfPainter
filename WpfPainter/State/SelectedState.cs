@@ -21,11 +21,11 @@ namespace WpfPainter
         public override bool MouseDown(Point startPoint)
         {
             currentShape = null;
-            foreach (var item in _canvasVM.Objects)
+            foreach (var item in canvasVM.Objects)
             {
                 item.IsSelected = false;
             }
-            foreach (var item in _canvasVM.Objects)
+            foreach (var item in canvasVM.Objects)
             {
                 if (item.IsPointInside(startPoint))
                 {

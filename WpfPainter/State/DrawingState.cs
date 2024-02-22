@@ -19,7 +19,7 @@ namespace WpfPainter
         {
             newInstance = currentShape.Create(startPoint);
             newInstance.SetProperty(fillColor, stroke, thickness);
-            _canvasVM.Objects.Add(newInstance);
+            canvasVM.Objects.Add(newInstance);
             undoStack.Push(newInstance);
             return true;
         }
@@ -34,7 +34,7 @@ namespace WpfPainter
         public override bool MouseUp()
         {
             //畫完時要自動選取當前形狀
-            foreach (var item in _canvasVM.Objects)
+            foreach (var item in canvasVM.Objects)
             {
                 item.IsSelected = false;
             }
@@ -47,7 +47,7 @@ namespace WpfPainter
             if (undoStack.Count > 0)
             {
                 ModelBase lastAction = undoStack.Pop();
-                _canvasVM.Objects.Remove(lastAction);
+                canvasVM.Objects.Remove(lastAction);
                 redoStack.Push(lastAction);
             }
         }
@@ -57,7 +57,7 @@ namespace WpfPainter
             if (redoStack.Count > 0)
             {
                 ModelBase redoAction = redoStack.Pop();
-                _canvasVM.Objects.Add(redoAction);
+                canvasVM.Objects.Add(redoAction);
             }
         }
         public override void SetProperty(Brush _fillColor, SolidColorBrush _stroke, double _thickness)

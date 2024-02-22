@@ -6,15 +6,15 @@ namespace WpfPainter
 {
     public class StateBase
     {
-        protected CanvasViewModel _canvasVM;
+        protected CanvasViewModel canvasVM;
         public ModelBase currentShape;
         public Brush fillColor;
         public SolidColorBrush stroke;
         public double thickness;
 
-        public StateBase(CanvasViewModel canvasVM)
+        public StateBase(CanvasViewModel _canvasVM)
         {
-            _canvasVM = canvasVM;
+            canvasVM = _canvasVM;
         }
 
         public virtual bool MouseDown(Point startPoint)

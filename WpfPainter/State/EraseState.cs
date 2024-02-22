@@ -17,7 +17,7 @@ namespace WpfPainter
         {
             currentShape = null;
             bool result = false;
-            foreach (var item in _canvasVM.Objects)
+            foreach (var item in canvasVM.Objects)
             {
                 if (item.IsPointInside(startPoint))
                 {
@@ -26,7 +26,7 @@ namespace WpfPainter
             }
             if (currentShape != null)
             {
-                _canvasVM.Objects.Remove(currentShape);
+                canvasVM.Objects.Remove(currentShape);
                 undoStack.Push(currentShape);
                 result = true;
             }
@@ -38,7 +38,7 @@ namespace WpfPainter
         {
             currentShape = null;
             bool result = false;
-            foreach (var item in _canvasVM.Objects)
+            foreach (var item in canvasVM.Objects)
             {
                 if (item.IsPointInside(mousePosition))
                 {
@@ -47,7 +47,7 @@ namespace WpfPainter
             }
             if (currentShape != null)
             {
-                _canvasVM.Objects.Remove(currentShape);
+                canvasVM.Objects.Remove(currentShape);
                 undoStack.Push(currentShape);
                 result = true;
             }
@@ -65,7 +65,7 @@ namespace WpfPainter
             if (undoStack.Count > 0)
             {
                 ModelBase lastAction = undoStack.Pop();
-                _canvasVM.Objects.Add(lastAction);
+                canvasVM.Objects.Add(lastAction);
                 redoStack.Push(lastAction);
             }
         }
@@ -75,7 +75,7 @@ namespace WpfPainter
             if (redoStack.Count > 0)
             {
                 ModelBase redoAction = redoStack.Pop();
-                _canvasVM.Objects.Remove(redoAction);
+                canvasVM.Objects.Remove(redoAction);
             }
         }
     }
